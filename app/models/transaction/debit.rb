@@ -1,5 +1,6 @@
 module Transaction
   class Debit < WalletTransaction 
+    DEBIT = TR_DEBIT
     DEBIT_CATEGORY = [ TR_WITHDRAW, TR_SEND, TR_BUY ].freeze
 
     validate :validate_debit

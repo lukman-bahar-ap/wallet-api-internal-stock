@@ -28,11 +28,10 @@ module Transaction
       tr_sell: TR_SELL
     }.freeze
   
-    enum transaction_type: TRANSACTION_TYPE
-    enum transaction_category: TRANSACTION_CATEGORY
-
-    validates :transaction_category, inclusion: { in:TRANSACTION_CATEGORY.keys, message: "Invalid category=#{self.transaction_category}. Must be one of: #{TRANSACTION_CATEGORY.keys.join(', ')}" }
+    validates :transaction_type, inclusion: { in: TRANSACTION_TYPE.values, message: "Invalid category. Must be one of: TR_DEBIT, TR_CREDIT" }
+    validates :transaction_category, inclusion: { in: TRANSACTION_CATEGORY.values, message: "Invalid category. Must be one of: #{TRANSACTION_CATEGORY.keys.join(', ')}" }
     validates :amount, presence: true, numericality: { greater_than: 0.00 }
+
     after_create :update_wallet_balance
 
     def update_wallet_balance

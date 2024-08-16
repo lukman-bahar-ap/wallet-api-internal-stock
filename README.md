@@ -2,9 +2,9 @@
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version 3.2.2
 
-* Configuration
+* Configuration, for first download from repository, run `bundle install`
 
 * Database  :
   - Create database transactions with : `rake db:create`

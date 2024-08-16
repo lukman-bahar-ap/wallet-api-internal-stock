@@ -1,5 +1,6 @@
 module Transaction
   class Credit < WalletTransaction 
+    CREDIT = TR_CREDIT
     CREDIT_CATEGORY = [ TR_DEPOSIT, TR_RECEIVE, TR_SELL ].freeze
     validate :validate_credit
     validates_presence_of :source_wallet, if: :two_way_wallet_tr?
@@ -24,8 +25,8 @@ module Transaction
     end
 
     def validate_credit
-      errors.add(:transaction_type, "#{transaction_type} => must be credit transaction") unless TR_CREDIT == transaction_type
-      errors.add(:transaction_category, "must be one of #{CREDIT_CATEGORY.join(', ')}") unless credit_category?
+      errors.add(:transaction_type, "#{transaction_type} == #{CREDIT} => must be credit transaction") unless CREDIT == transaction_type
+      errors.add(:transaction_category, "#{transaction_category} must be one of #{CREDIT_CATEGORY.join(', ')}") unless credit_category?
     end
 
   end

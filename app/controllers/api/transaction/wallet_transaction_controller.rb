@@ -30,7 +30,6 @@ class Api::Transaction::WalletTransactionController < ApplicationController
 
   def transfer
     wallet = walletable
-    wallet = Transaction::Wallet.first
     service = Transaction::WalletService.new(wallet)
 
     message = failed_response.merge(message: 'Invalid amount', error: :unprocessable_entity)
